@@ -15,18 +15,18 @@ describe DockingStation do
   end
 
   it "responds to bike method" do
-   expect(subject).to respond_to(:bike)
+   expect(subject).to respond_to(:bikes)
   end
 
   it "docks a bike" do
     bike = Bike.new
-    expect(subject.dock(bike)).to eq bike
+    expect(subject.dock(bike)).to include bike
   end
 
   it "returns docked bikes" do
    bike = Bike.new
    subject.dock(bike)
-   expect(subject.bike).to eq bike
+   expect(subject.bikes).to include bike
   end
 
   it "raises an error if there are no bikes" do
@@ -34,9 +34,8 @@ describe DockingStation do
   end
 
   it "raises an error if there is already a bike docked" do
-    bike = Bike.new
-    subject.dock(bike)
-    expect{subject.dock(bike)}.to raise_error("Too many bikes! No more space!")
+    20.times { subject.dock Bike.new }
+    expect{subject.dock Bike.new}.to raise_error("Too many bikes! No more space!")
   end
 
   it "expects a bike to be working" do
