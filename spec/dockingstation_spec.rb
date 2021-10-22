@@ -43,4 +43,9 @@ describe DockingStation do
     expect(bike.working?).to eq true
   end 
 
+  it "capacity setting" do
+
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
 end
