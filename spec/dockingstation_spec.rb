@@ -34,7 +34,7 @@ describe DockingStation do
   end
 
   it "raises an error if there is already a bike docked" do
-    20.times { subject.dock Bike.new }
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
     expect{subject.dock Bike.new}.to raise_error("Too many bikes! No more space!")
   end
 
